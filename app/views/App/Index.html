@@ -20,12 +20,23 @@
   </div>
 </nav>
 
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
+<div class="uk-padding">
+  <div class="uk-child-width-1-4@m" uk-grid>
+    {{ range $book := .Books}}
+    <div>
+        <div class="uk-card uk-card-default">
+            <div class="uk-card-media-top uk-width-expand uk-height-small uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url('{{ .Image }}');">
+            </div>
+            <div class="uk-card-body">
+                <h3 class="uk-card-title">{{ .Title }}</h3>
+                <p>{{ .Desciption }}</p>
+            </div>
+        </div>
+    </div>
+    {{end}}
     </div>
   </div>
 </div>
+
 
 {{template "footer.html" .}}
