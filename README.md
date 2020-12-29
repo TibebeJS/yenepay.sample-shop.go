@@ -6,6 +6,7 @@
 ![Go Report Card](https://goreportcard.com/badge/github.com/tibebejs/yenepay.sample-shop.go)
 
 ---
+Visit a [Live Demo Deployed on Heroku](https://yenepay-go-bookshop.herokuapp.com/)
 > ### Under Construction #
 > ---
 > ### Coming soon...
