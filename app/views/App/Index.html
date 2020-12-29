@@ -20,12 +20,33 @@
   </div>
 </nav>
 
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
+<div class="uk-padding">
+  <div class="uk-child-width-1-5@m" uk-grid>
+    {{ range $book := .Books}}
+    <div>
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-media-left uk-cover-container">
+            <img src="{{ .Image }}" alt="" uk-cover>
+            <canvas width="600" height="400"></canvas>
+        </div>
+            <!-- <div class="uk-card-media-top uk-width-expand uk-height-small uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url('{{ .Image }}');">
+            </div> -->
+            <div class="uk-card-body">
+                <h3 class="uk-card-title">{{ .Title }}</h3>
+                <p>Price: {{ .Price }} Birr</p>
+              <div class="uk-card-badge uk-label uk-position-center-right">Programming</div>
+
+            </div>
+            <div>
+              <a href="#" class="uk-button uk-button-text uk-padding-small uk-position-bottom-left">Buy this Book</a>
+              <a href="#" class="uk-button uk-button-text uk-padding-small uk-position-bottom-right">Add to Cart</a>
+            </div>
+          </div>
+    </div>
+    {{end}}
     </div>
   </div>
 </div>
+
 
 {{template "footer.html" .}}
