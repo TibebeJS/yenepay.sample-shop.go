@@ -3,3 +3,9 @@
 [![codecov](https://codecov.io/gh/TibebeJS/yenepay.sample-shop.go/branch/main/graph/badge.svg?token=PQTt3MS57J)](https://codecov.io/gh/TibebeJS/yenepay.sample-shop.go)
 ![linter](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/linter/badge.svg)
 ![Deploy](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/Deploy/badge.svg)
+![Go Report Card](https://goreportcard.com/badge/github.com/tibebejs/yenepay.sample-shop.go)
+
+---
+> ### Under Construction #
+> ---
+> ### Coming soon...
