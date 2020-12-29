@@ -17,6 +17,7 @@ tmp/
 routes/
 none
 app/tmp/
+app/tmp/run/
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

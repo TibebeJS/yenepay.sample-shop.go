@@ -10,38 +10,38 @@ type App struct {
 
 func (c App) Index() revel.Result {
 	Books := []struct {
-		Title      string
-		Desciption string
-		Image      string
+		Title string
+		Price float64
+		Image string
 	}{
 		{
-			"Go",
-			"Learn Go",
+			"Go Bootcamp: 2nd Edition",
+			14.99,
 			"/public/img/go-bootcamp.jpg",
 		},
 		{
 			"Automate The Boring Stuff With Python",
-			"Learn Go",
+			24.99,
 			"/public/img/automate-the-boring-stuff-with-python.jpg",
 		},
 		{
 			"Get Programming With Go",
-			"Learn Go",
+			99.99,
 			"/public/img/get-programming-with-go.jpg",
 		},
 		{
-			"Go",
-			"Learn Go",
+			"Go Bootcamp: 2nd Edition",
+			14.99,
 			"/public/img/go-bootcamp.jpg",
 		},
 		{
 			"Automate The Boring Stuff With Python",
-			"Learn Go",
+			24.99,
 			"/public/img/automate-the-boring-stuff-with-python.jpg",
 		},
 		{
 			"Get Programming With Go",
-			"Learn Go",
+			99.99,
 			"/public/img/get-programming-with-go.jpg",
 		},
 	}
