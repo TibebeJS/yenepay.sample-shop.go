@@ -1,6 +1,7 @@
 #Compile stage
 FROM golang:1.15.6-alpine3.12 AS build-env
 ENV CGO_ENABLED 0
+ENV PORT $PORT
 RUN apk add --no-cache git
 RUN mkdir -p /go/src/github.com/TibebeJs
 ADD . /go/src/github.com/TibebeJs/yenepay.sample-shop.go
@@ -15,7 +16,8 @@ RUN revel build . dev
 
 # Final stage
 FROM golang:1.15.6-alpine3.12
-EXPOSE 9000
+ENV PORT $PORT
+EXPOSE $PORT
 WORKDIR /
 COPY --from=build-env /go/src/github.com/TibebeJs/yenepay.sample-shop.go/dev /
 ENTRYPOINT /run.sh
