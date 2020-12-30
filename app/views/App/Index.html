@@ -2,21 +2,48 @@
 {{template "header.html" .}}
 
 <nav class="uk-navbar-container uk-margin" uk-navbar>
-  <div class="uk-navbar-left">
+  <div class="uk-navbar-center">
 
-      <a class="uk-navbar-item uk-logo" href="#">YeneShop Go!</a>
+      <a class="uk-navbar-item uk-logo uk-text-large" href="#"><span uk-icon="icon: tag" class="uk-text-primary"></span>YeneShop<span class="uk-text-primary" style="padding-left: 4px;"> Go!</span></a>
+         
+     
+    <div class="uk-align-right@s uk-margin-small">
+      <button class="uk-button uk-button-text uk-padding-small" type="button">
+        <a href="#" uk-icon="icon: bell"></a>
+        Notifications
+      </button>
+      <div uk-drop="boundary: .boundary">
+          <div class="uk-card uk-card-body uk-card-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+      </div>
+    </div>
+    <button class="uk-button uk-button-text uk-padding-small" type="button">
+      Transactions
+    </button>
 
-    
-      <div class="uk-navbar-item">
-          <div>Made in 🇪🇹 with Love
-      </div>
-      <div class="uk-navbar-item">
-        <a href="#">Home</a>
-      </div>
-      <div class="uk-navbar-item">
-        <a href="#">Featured</a>
-      </div>
+    <div class="uk-align-right@s uk-margin-small">
+      <button class="uk-button uk-button-default" type="button">
+        <a href="#" uk-icon="icon: cart"></a>
+        Cart
+      </button>
+      <div uk-drop="boundary: .boundary">
+          <div class="uk-card uk-card-body uk-card-default uk-card-small">
 
+            Items:
+            <div>
+              <ul class="uk-list uk-list-hyphen">
+                  <li>List item 1</li>
+                  <li>List item 2</li>
+                  <li>List item 3</li>
+              </ul>
+          </div>
+
+            <button class="uk-button uk-button-default uk-width-expand uk-button-primary" type="button" onclick="location='/checkout'">
+              <a href="#" uk-icon="icon: credit-card"></a>
+              Checkout
+            </button>
+          </div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -38,8 +65,8 @@
 
             </div>
             <div>
-              <a href="#" class="uk-button uk-button-text uk-padding-small uk-position-bottom-left">Buy this Book</a>
-              <a href="#" class="uk-button uk-button-text uk-padding-small uk-position-bottom-right">Add to Cart</a>
+              <a href="Buy/2" class="uk-button uk-button-text uk-padding-small uk-position-bottom-left">Buy this Book</a>
+              <a href="AddToCart/2" class="uk-button uk-button-text uk-padding-small uk-position-bottom-right">Add to Cart</a>
             </div>
           </div>
     </div>
