@@ -7,6 +7,9 @@
 
 ---
 Visit a [Live Demo Deployed on Heroku](https://yenepay-go-bookshop.herokuapp.com/)
+
+[Run tests](https://yenepay-go-bookshop.herokuapp.com/@tests) for the deployed demo
+
 > ### Under Construction #
 > ---
 > ### Coming soon...
