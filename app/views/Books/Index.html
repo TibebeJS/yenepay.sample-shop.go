@@ -17,7 +17,7 @@
 
             </div>
             <div>
-              <a href="Buy/{{ .BookId }}" class="uk-button uk-button-text uk-padding-small uk-position-bottom-left">Buy this Book</a>
+              <a class="uk-button uk-button-text uk-padding-small uk-position-bottom-left" uk-toggle="target: #express-checkout">Buy this Book</a>
               <a href="AddToCart/{{ .BookId }}" class="uk-button uk-button-text uk-padding-small uk-position-bottom-right">Add to Cart</a>
             </div>
           </div>
@@ -26,5 +26,55 @@
     </div>
   </div>
 </div>
-  
+<div id="my-id" uk-offcanvas="flip: true">
+  sdf
+</div>
+
+<div id="cart-checkout" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+        <h3>My Cart</h3>
+
+        <p>
+          Items:
+          <ul class="uk-list uk-list-striped">
+            <li>List item 1 <a href="#" uk-icon="icon: close" class="uk-align-right"></a></li>
+            <li>List item 2 <a href="#" uk-icon="icon: close" class="uk-align-right"></a></li>
+            <li>List item 3 <a href="#" uk-icon="icon: close" class="uk-align-right"></a></li>
+          </ul>
+
+        </p>
+
+        <button class="uk-button uk-button-primary uk-width-expand" type="button"
+          onclick="location='#'">
+          <a href="#" uk-icon="icon: credit-card"></a>
+          Checkout (YenePay)
+        </button>
+    </div>
+</div>
+
+<div id="express-checkout" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+        <h3>Buy this item</h3>
+
+        <p>
+          Quantity:
+          
+
+        </p>
+
+        <button class="uk-button uk-button-primary uk-width-expand" type="button"
+          onclick="location='#'">
+          <a href="#" uk-icon="icon: credit-card"></a>
+          Pay with YenePay
+        </button>
+
+    </div>
+</div>
+
 {{template "footer.html" .}}

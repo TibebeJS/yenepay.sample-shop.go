@@ -32,31 +32,10 @@
             Transactions
           </a>
 
-          <div class="uk-align-right@s uk-margin-small">
-            <button class="uk-button uk-button-default" type="button">
-              <a href="#" uk-icon="icon: cart"></a>
-              Cart
-            </button>
-            <div uk-drop="boundary: .boundary">
-              <div class="uk-card uk-card-body uk-card-default uk-card-small">
-
-                Items:
-                <div>
-                  <ul class="uk-list uk-list-hyphen">
-                    <li>List item 1</li>
-                    <li>List item 2</li>
-                    <li>List item 3</li>
-                  </ul>
-                </div>
-
-                <button class="uk-button uk-button-default uk-width-expand uk-button-primary" type="button"
-                  onclick="location='/checkout'">
-                  <a href="#" uk-icon="icon: credit-card"></a>
-                  Checkout
-                </button>
-              </div>
-            </div>
-          </div>
+          <button class="uk-button uk-button-default" type="button" uk-toggle="target: #cart-checkout">
+            <a href="#" uk-icon="icon: cart"></a>
+            My Cart
+          </button>
 
           <div class="uk-align-right@s uk-margin-small">
             <button class="uk-button uk-button-default" type="button">
