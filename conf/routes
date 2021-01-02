@@ -3,24 +3,26 @@
 # This file defines all application routes (Higher priority routes first)
 #
 
+
 module:testrunner
-# module:jobs
+module:jobs
 
-
-GET     /                                       App.Index
-
-# Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /                                       Application.Index
+GET     /about                                  Application.About
+GET     /books                                 Books.Index
+#GET     /books/list                            Books.List
+#GET     /books/:id                             Books.Show
+#GET     /books/:id/order                     Books.Book
+#POST    /books/:id/order                     Books.ConfirmOrder
+#POST    /orders/:id/cancel                    Books.CancelOrder
+GET     /register                               Application.Register
+POST    /register                               Application.SaveUser
+POST    /login                                  Application.Login
+GET     /logout                                 Application.Logout
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/*filepath                       Static.Serve("public")
+GET     /favicon.ico                            Static.Serve("public/img","favicon.png")
 
-# Catch all, this will route any request into the controller path
-#
-#                    **** WARNING ****
-# Enabling this exposes any controller and function to the web.
-# ** This is a serious security issue if used online **
-#
-# For rapid development uncomment the following to add new controller.action endpoints
-# without having to add them to the routes table.
-# *       /:controller/:action                    :controller.:action
+# Catch all
+*       /:controller/:action                  :controller.:action
