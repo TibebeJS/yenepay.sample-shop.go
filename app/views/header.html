@@ -2,18 +2,89 @@
 
 <html>
   <head>
-    <title>{{.title}}</title>
+    <title>{{ .title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/public/css/uikit.min.css" />
     <script src="/public/js/uikit.min.js"></script>
     <script src="/public/js/uikit-icons.min.js"></script>
-    {{range .moreStyles}}
-      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
-    {{end}}
-    {{range .moreScripts}}
-      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-    {{end}}
-    
+    </head>    
   </head>
   <body>
+
+
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+  <div class="uk-navbar-center">
+
+      <a class="uk-navbar-item uk-logo uk-text-large" href="#"><span uk-icon="icon: tag" class="uk-text-primary"></span>YeneShop<span class="uk-text-primary" style="padding-left: 4px;"> Go!</span></a>
+         
+     
+
+  {{ if .user }}
+    <div class="uk-align-right@s uk-margin-small">
+      <button class="uk-button uk-button-text uk-padding-small" type="button">
+        <a href="#" uk-icon="icon: bell"></a>
+        Notifications
+      </button>
+      <div uk-drop="boundary: .boundary">
+          <div class="uk-card uk-card-body uk-card-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+      </div>
+    </div>
+    <a href="/transactions" class="uk-button uk-button-text uk-padding-small">
+      Transactions
+    </a>
+
+    <div class="uk-align-right@s uk-margin-small">
+      <button class="uk-button uk-button-default" type="button">
+        <a href="#" uk-icon="icon: cart"></a>
+        Cart
+      </button>
+      <div uk-drop="boundary: .boundary">
+          <div class="uk-card uk-card-body uk-card-default uk-card-small">
+
+            Items:
+            <div>
+              <ul class="uk-list uk-list-hyphen">
+                  <li>List item 1</li>
+                  <li>List item 2</li>
+                  <li>List item 3</li>
+              </ul>
+          </div>
+
+            <button class="uk-button uk-button-default uk-width-expand uk-button-primary" type="button" onclick="location='/checkout'">
+              <a href="#" uk-icon="icon: credit-card"></a>
+              Checkout
+            </button>
+          </div>
+      </div>
+    </div>
+
+    <div class="uk-align-right@s uk-margin-small">
+      <button class="uk-button uk-button-default" type="button">
+        <a href="#" uk-icon="icon: user"></a>
+        {{ .user.Username }}
+      </button>
+      <div uk-drop="boundary: .boundary">
+          <div class="uk-card uk-card-body uk-card-default uk-card-small">
+            
+            
+            <div class="uk-padding-small">
+              Signed In as: {{.user.Name}}
+              <br/>
+              <br/>
+              Account Balance: 200 Birr
+            </div>
+
+
+            <button class="uk-button uk-button-default uk-width-expand uk-button-primary" type="button" onclick="location='{{ url "Application.Logout"}}'">
+              <a href="#" uk-icon="icon: sign-out"></a>
+              Sign out
+            </button>
+          </div>
+      </div>
+    </div>
+
+    {{end}}
+
+  </div>
+</nav>

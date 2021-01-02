@@ -1,0 +1,47 @@
+{{template "header.html" }}
+<form action='{{ url "Application.Login" }}' id="formLogin" method="POST" class="uk-padding-large uk-align-center">
+
+  {{ if .flash.error }}
+    <div uk-alert class="uk-alert-danger">
+      {{ .flash.error }}
+    </div>
+  {{ end }}
+
+  <div uk-alert class="uk-alert-close">
+    Use the following credentials for testing<br>
+    <b>Username:</b> user<br>
+    <b>Password:</b> password
+  </div>
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <input class="uk-input" type="text" name="username" value="{{.flash.username}}" />
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+        <input class="uk-input" type="password" name="password">
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <input type="checkbox" name="remember" value="true"/>
+      remember me
+    </div>
+  </div>
+
+  <button class="uk-button uk-button-default uk-width-expand uk-button-primary" type="submit">
+    <a uk-icon="icon: sign-in"></a>
+    Sign in
+  </button>
+  
+  <p>
+    <a href='{{ url "Application.SaveUser" }}'>Register New User</a>
+  </p>
+</form>
+
+{{ template "footer.html" }}
