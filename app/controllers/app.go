@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/revel/revel"
