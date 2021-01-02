@@ -18,7 +18,7 @@ func (u *User) String() string {
 	return fmt.Sprintf("User(%s)", u.Username)
 }
 
-var userRegex = regexp.MustCompile("^\\w*$")
+var userRegex = regexp.MustCompile(`^\w*$`)
 
 func (user *User) Validate(v *revel.Validation) {
 	v.Check(user.Username,
