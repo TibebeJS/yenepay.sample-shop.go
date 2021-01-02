@@ -9,9 +9,9 @@ import (
 )
 
 type Order struct {
-	OrderId             int
-	UserId              int
-	BookId              int
+	OrderId int
+	UserId  int
+	BookId  int
 
 	// Transient
 	PurchaseDate   time.Time
@@ -28,7 +28,7 @@ func (order Order) Validate(v *revel.Validation) {
 }
 
 func (o Order) String() string {
-	return fmt.Sprintf("Order(%s,%s)", o.User, o.Book)
+	return fmt.Sprintf("Order(%v,%v)", o.User, o.Book)
 }
 
 func (o *Order) PreInsert(_ gorp.SqlExecutor) error {
