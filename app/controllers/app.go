@@ -34,7 +34,7 @@ func (c Application) connected() *models.User {
 
 func (c Application) getUser(username string) (user *models.User) {
 	user = &models.User{}
-	_, err := c.Session.GetInto("fulluser", user, false)
+	c.Session.GetInto("fulluser", user, false)
 	if user.Username == username {
 		return user
 	}
