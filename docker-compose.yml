@@ -1,0 +1,22 @@
+version: '3'
+services:
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=yenepay-demo
+    ports:
+      - "5432:5432"
+  yenepay-shop:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - DATABASE_URL=host=database user=postgres password=postgres dbname=yenepay-demo sslmode=disable
+      - AUTOMIGRATE=true
+    ports:
+      - "9000:9000"
+    depends_on:
+      - database
+    restart: on-failure
