@@ -8,6 +8,7 @@ ADD . /go/src/github.com/TibebeJs/yenepay.sample-shop.go
 
 # Install revel framework
 RUN go get github.com/revel/cmd/revel
+RUN go get github.com/go-gorp/gorp
 
 #build revel app
 WORKDIR /go/src/github.com/TibebeJs/yenepay.sample-shop.go

@@ -11,6 +11,7 @@ require (
 	github.com/go-gorp/gorp v2.2.0+incompatible
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/inconshreveable/log15 v0.0.0-20201112154412-8562bdadbbac // indirect
+	github.com/lib/pq v1.9.0
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/myesui/uuid v1.0.0 // indirect

@@ -29,7 +29,7 @@ func (c Books) Index() revel.Result {
 	c.Log.Info("Fetching books")
 	var books []*models.Book
 	_, err := c.Txn.Select(&books,
-		c.Db.SqlStatementBuilder.Select("*").From("'Book'"),
+		c.Db.SqlStatementBuilder.Select("*").From("\"Book\""),
 	)
 
 	if err != nil {
@@ -47,7 +47,7 @@ func (c Books) List(search string, size, page uint64) revel.Result {
 	search = strings.TrimSpace(search)
 
 	var books []*models.Book
-	builder := c.Db.SqlStatementBuilder.Select("*").From("Book").Offset((page - 1) * size).Limit(size)
+	builder := c.Db.SqlStatementBuilder.Select("*").From("\"Book\"").Offset((page - 1) * size).Limit(size)
 	if search != "" {
 		search = "%" + strings.ToLower(search) + "%"
 		builder = builder.Where(squirrel.Or{
@@ -107,16 +107,16 @@ func (c Books) SaveSettings(password, verifyPassword string) revel.Result {
 	return c.Redirect(Books.Index)
 }
 
-func (c Books) ConfirmOrder(id int, booking models.Order) revel.Result {
+func (c Books) ConfirmOrder(id int, order models.Order) revel.Result {
 	book := c.loadBookById(id)
 	if book == nil {
 		return c.NotFound("Book %d does not exist", id)
 	}
 
-	title := fmt.Sprintf("Confirm %s booking", book.Title)
-	booking.Book = book
-	booking.User = c.connected()
-	booking.Validate(c.Validation)
+	title := fmt.Sprintf("Confirm %s order", book.Title)
+	order.Book = book
+	order.User = c.connected()
+	order.Validate(c.Validation)
 
 	if c.Validation.HasErrors() || c.Params.Get("revise") != "" {
 		c.Validation.Keep()
@@ -125,16 +125,16 @@ func (c Books) ConfirmOrder(id int, booking models.Order) revel.Result {
 	}
 
 	if c.Params.Get("confirm") != "" {
-		err := c.Txn.Insert(&booking)
+		err := c.Txn.Insert(&order)
 		if err != nil {
 			panic(err)
 		}
 		c.Flash.Success("Thank you, %s, your confirmation number for %s is %d",
-			booking.User.Name, book.Title, booking.OrderId)
+			order.User.Name, book.Title, order.OrderId)
 		return c.Redirect(Books.Index, id)
 	}
 
-	return c.Render(title, book, booking)
+	return c.Render(title, book, order)
 }
 
 func (c Books) CancelOrder(id int) revel.Result {
