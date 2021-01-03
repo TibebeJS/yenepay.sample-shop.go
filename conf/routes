@@ -7,22 +7,24 @@
 module:testrunner
 module:jobs
 
-GET     /                                       Application.Index
-GET     /about                                  Application.About
-GET     /books                                 Books.Index
-#GET     /books/list                            Books.List
-#GET     /books/:id                             Books.Show
-#GET     /books/:id/order                     Books.Book
-#POST    /books/:id/order                     Books.ConfirmOrder
-#POST    /orders/:id/cancel                    Books.CancelOrder
-GET     /register                               Application.Register
-POST    /register                               Application.SaveUser
-POST    /login                                  Application.Login
-GET     /logout                                 Application.Logout
+GET      /                                       Application.Index
+GET      /about                                  Application.About
+GET      /books                                  Books.Index
+GET      /orders                                 Orders.Index
+GET      /register                               Application.Register
+POST     /register                               Application.SaveUser
+POST     /login                                  Application.Login
+GET      /logout                                 Application.Logout
+
+#GET     /books/list                             Books.List
+#GET     /books/:id                              Books.Show
+#GET     /books/:id/order                        Books.Book
+#POST    /books/:id/order                        Books.ConfirmOrder
+#POST    /orders/:id/cancel                      Books.CancelOrder
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/*filepath                       Static.Serve("public")
-GET     /favicon.ico                            Static.Serve("public/img","favicon.png")
+GET      /public/*filepath                       Static.Serve("public")
+GET      /favicon.ico                            Static.Serve("public/img","favicon.png")
 
 # Catch all
 *       /:controller/:action                  :controller.:action
