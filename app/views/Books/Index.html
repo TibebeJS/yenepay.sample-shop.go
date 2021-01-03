@@ -31,20 +31,44 @@
 </div>
 
 <div id="cart-checkout" uk-offcanvas="flip: true; overlay: true">
-    <div class="uk-offcanvas-bar">
+    <div class="uk-offcanvas-bar"  style="width: 550px">
 
         <button class="uk-offcanvas-close" type="button" uk-close></button>
 
         <h3>My Cart</h3>
 
         <p>
-          Items:
-          <ul class="uk-list uk-list-striped">
-            <li>List item 1 <a href="#" uk-icon="icon: close" class="uk-align-right"></a></li>
-            <li>List item 2 <a href="#" uk-icon="icon: close" class="uk-align-right"></a></li>
-            <li>List item 3 <a href="#" uk-icon="icon: close" class="uk-align-right"></a></li>
-          </ul>
+          <b>Items:</b>
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand" uk-leader>Automate The Boring Stuff</div>
+            <div>20.90 Birr</div>
+            <a href="#" uk-icon="icon: close"></a>
+          </div>
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand" uk-leader>Go Bootcamp: 2nd Edition</div>
+            <div>12.90 Birr</div>
+            <a href="#" uk-icon="icon: close"></a>
+          </div>
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand" uk-leader>Get Programming With Go</div>
+            <div>20.90 Birr</div>
+            <a href="#" uk-icon="icon: close"></a>
+          </div>
 
+          <hr>
+
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand" uk-leader>Tax:</div>
+            <div>11.49 Birr</div>
+          </div>
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand" uk-leader>Discount:</div>
+            <div>0.0 Birr</div>
+          </div>
+          <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand" uk-leader>Total Cost:</div>
+            <div>114.90 Birr</div>
+          </div>
         </p>
 
         <button class="uk-button uk-button-primary uk-width-expand" type="button"
