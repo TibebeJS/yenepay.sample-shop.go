@@ -10,7 +10,7 @@
 > ### Coming soon...
 ## How to run #
 ### 1. Use the Deployed/Live Server #
-The latest version of this app is automatically deployed to Heroku using Github Action. You can use that to quickly try out the application without having to manually build/install.
+The latest version of this app is continuously deployed to Heroku as soon as any change to master branch is found. You can use that to quickly try out the application without having to manually build/install.
 
 [Try out the Live Demo](https://yenepay-go-bookshop.herokuapp.com/)
 
@@ -18,7 +18,12 @@ The latest version of this app is automatically deployed to Heroku using Github 
 ### pre-requisite
  - PostgreSQL
  - Go 1.x (tested with v1.15)
- - `GOPATH` should be properly configured (at least `revel` command should resolved)
+ - `GOPATH` should be properly configured. At minimum `revel` should be resolved in `PATH`.\
+    Try this (on linux):
+    ```
+    $ export GOPATH=/home/$USER/go
+    $ export PATH=$PATH:$GOPATH/bin
+    ```
 1. Clone this repository: 
 ```
 $ git clone git@github.com:TibebeJS/yenepay.sample-shop.go.git
