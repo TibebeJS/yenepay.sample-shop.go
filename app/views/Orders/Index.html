@@ -1,0 +1,37 @@
+{{ set . "title" "My Orders" }}
+{{template "header.html" .}}
+
+<div class="uk-padding">
+    <div class="uk-child-width-1" uk-grid>
+        <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink">Status</th>
+                        <th class="uk-table-shrink">Cover</th>
+                        <th class="uk-table-shrink">ID</th>
+                        <th class="uk-width-expand">Title</th>
+                        <th class="uk-width-small">Published at</th>
+                        <th class="uk-width-small">Purchased at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range $order := .orders  }}
+                    <tr>
+                        <td><input class="uk-checkbox" type="checkbox" readonly></td>
+                        <td><img class="uk-preserve-width uk-preserve-height  uk-border-circle" src="/public/img/{{ .Book.CoverImage }}" width="40" height="40" alt=""></td>
+                        <td class="uk-text-truncate">{{ .OrderId }}</td>
+                        <td class="uk-table-link">
+                            <a class="uk-link-reset" href="">{{ .Book.Title }}</a>
+                        </td>
+                        <td class="uk-text-truncate">{{ .PublishingDate }}</td>
+                        <td class="uk-text-nowrap">{{ .PurchaseDate }}</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{template "footer.html" .}}
