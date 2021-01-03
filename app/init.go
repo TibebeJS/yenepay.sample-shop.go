@@ -62,7 +62,13 @@ func init() {
 		t.ColMap("Book").Transient = true
 
 		rgorp.Db.TraceOn(revel.AppLog)
-		err := Dbm.CreateTables()
+		err := Dbm.DropTablesIfExists()
+
+		if err != nil {
+			revel.AppLog.Fatal("Failed to drop existing tables", "error", err)
+		}
+
+		err = Dbm.CreateTablesIfNotExists()
 		if err != nil {
 			revel.AppLog.Fatal("Failed to create tables", "error", err)
 		}

@@ -5,11 +5,12 @@ ENV PORT $PORT
 ENV DATABASE_URL $DATABASE_URL
 RUN apk add --no-cache git
 RUN mkdir -p /go/src/github.com/TibebeJs
-ADD . /go/src/github.com/TibebeJs/yenepay.sample-shop.go
 
 # Install revel framework
 RUN go get github.com/revel/cmd/revel
 RUN go get github.com/go-gorp/gorp
+
+ADD . /go/src/github.com/TibebeJs/yenepay.sample-shop.go
 
 #build revel app
 WORKDIR /go/src/github.com/TibebeJs/yenepay.sample-shop.go
