@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/revel/revel"
@@ -46,7 +47,7 @@ func (c Application) getUser(username string) (user *models.User) {
 		return user
 	}
 
-	err = c.Txn.SelectOne(user, c.Db.SqlStatementBuilder.Select("*").From("User").Where("Username=?", username))
+	err = c.Txn.SelectOne(user, c.Db.SqlStatementBuilder.Select("*").From("\"User\"").Where("\"Username\"=?", username))
 	if err != nil {
 		if err != sql.ErrNoRows {
 			//c.Txn.Select(user, c.Db.SqlStatementBuilder.Select("*").From("User").Limit(1))

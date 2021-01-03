@@ -54,7 +54,7 @@ func init() {
 		setColumnSizes(t, map[string]int{
 			"Title":      50,
 			"Price":      100,
-			"CoverImage": 40,
+			"CoverImage": 60,
 		})
 
 		t = Dbm.AddTable(models.Order{}).SetKeys(true, "OrderId")
@@ -72,7 +72,7 @@ func init() {
 
 		bcryptPassword, _ := bcrypt.GenerateFromPassword(
 			[]byte(demoPassword), bcrypt.DefaultCost)
-			
+
 		demoUser := &models.User{
 			UserId:         0,
 			Name:           "Abebe Kebede",
@@ -83,7 +83,7 @@ func init() {
 		if err := Dbm.Insert(demoUser); err != nil {
 			panic(err)
 		}
-		count, _ := rgorp.Db.SelectInt(rgorp.Db.SqlStatementBuilder.Select("count(*)").From("User"))
+		count, _ := rgorp.Db.SelectInt(rgorp.Db.SqlStatementBuilder.Select("count(*)").From("\"User\""))
 		if count > 1 {
 			revel.AppLog.Panic("Unexpected multiple users", "count", count)
 		}
@@ -93,19 +93,19 @@ func init() {
 				BookId:     0,
 				Price:      19.9,
 				Title:      "Go Bootcamp: 2nd Edition",
-				CoverImage: "placeholder",
+				CoverImage: "go-bootcamp.jpg",
 			},
 			{
 				BookId:     0,
 				Price:      19.9,
 				Title:      "Automate The Boring Stuff With Python",
-				CoverImage: "placeholder",
+				CoverImage: "automate-the-boring-stuff-with-python.jpg",
 			},
 			{
 				BookId:     0,
 				Price:      19.9,
 				Title:      "Get Programming With Go",
-				CoverImage: "placeholder",
+				CoverImage: "get-programming-with-go.jpg",
 			},
 		}
 		for _, book := range books {
@@ -113,43 +113,42 @@ func init() {
 				panic(err)
 			}
 		}
-		bookings := []*models.Order{
+		orders := []*models.Order{
 			{
-				OrderId:             0,
-				UserId:              demoUser.UserId,
-				BookId:              books[0].BookId,
-				PurchaseDate:        time.Now(),
-				PublishingDate:      time.Now(),
-				User:                demoUser,
-				Book:                books[0],
+				OrderId:        0,
+				UserId:         demoUser.UserId,
+				BookId:         books[0].BookId,
+				PurchaseDate:   time.Now(),
+				PublishingDate: time.Now(),
+				User:           demoUser,
+				Book:           books[0],
 			},
 			{
-				OrderId:             0,
-				UserId:              demoUser.UserId,
-				BookId:              books[1].BookId,
-				PurchaseDate:        time.Now(),
-				PublishingDate:      time.Now(),
-				User:                demoUser,
-				Book:                books[1],
+				OrderId:        0,
+				UserId:         demoUser.UserId,
+				BookId:         books[1].BookId,
+				PurchaseDate:   time.Now(),
+				PublishingDate: time.Now(),
+				User:           demoUser,
+				Book:           books[1],
 			},
 			{
-				OrderId:             0,
-				UserId:              demoUser.UserId,
-				BookId:              books[2].BookId,
-				PurchaseDate:        time.Now(),
-				PublishingDate:      time.Now(),
-				User:                demoUser,
-				Book:                books[2],
+				OrderId:        0,
+				UserId:         demoUser.UserId,
+				BookId:         books[2].BookId,
+				PurchaseDate:   time.Now(),
+				PublishingDate: time.Now(),
+				User:           demoUser,
+				Book:           books[2],
 			},
 		}
-		for _, booking := range bookings {
-			if err := Dbm.Insert(booking); err != nil {
+		for _, order := range orders {
+			if err := Dbm.Insert(order); err != nil {
 				panic(err)
 			}
 		}
 	}, 5)
 }
-
 
 var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {
 	// Add some common security headers
