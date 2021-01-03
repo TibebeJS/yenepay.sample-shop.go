@@ -5,25 +5,32 @@
 ![Deploy](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/Deploy/badge.svg)
 ![Go Report Card](https://goreportcard.com/badge/github.com/tibebejs/yenepay.sample-shop.go)
 
-> ### Under Construction #
-> ---
-> ### Coming soon...
-## How to run #
-### 1. Use the Deployed/Live Server #
-The latest version of this app is continuously deployed to Heroku as soon as any change to master branch is found. You can use that to quickly try out the application without having to manually build/install.
+An online book shop app to demonstrate [Yenepay-Go](https://github.com/TibebeJS/yenepay.sdk.go):
+- Built with Go ([revel framework](https://github.com/revel/revel))
+- Using a PostgreSQL database with [GORP](https://github.com/go-gorp/gorp) (ORM-ish library)
+- with working authentication (Interceptors, Models)
+- [YenePay](https://www.yenepay.com/) integrated for Payment (using [yenepay.sdk.go](https://github.com/TibebeJS/yenepay.sdk.go) library)
+
+## Quick Start #
+### 1. Try using a Deployed/Live Server #
+The latest version of this app is continuously deployed (CD pipeline) to Heroku as soon as new changes on master branch are found.
+
+You can use that to quickly try out the application without having to manually build/install.
 
 [Try out the Live Demo](https://yenepay-go-bookshop.herokuapp.com/)
 
 ### 2. Manual Installation #
-### pre-requisite
+### pre-requisites
  - PostgreSQL
  - Go 1.x (tested with v1.15)
- - `GOPATH` should be properly configured. At minimum `revel` should be resolved in `PATH`.\
-    Try this (on linux):
+ - `GOPATH` should be properly configured. At minimum `revel` should be resolved in `PATH`.
+
+    You can try running the following (on linux):
     ```
     $ export GOPATH=/home/$USER/go
     $ export PATH=$PATH:$GOPATH/bin
     ```
+
 1. Clone this repository: 
 ```
 $ git clone git@github.com:TibebeJS/yenepay.sample-shop.go.git
@@ -72,3 +79,6 @@ $ docker-compose up --build
 4. Navigate to `http://localhost:9000` on your favourite browser :)
 
 
+> ### Under Construction #
+> ---
+> ### Coming soon...
