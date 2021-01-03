@@ -2,6 +2,7 @@
 FROM golang:1.15.6-alpine3.12 AS build-env
 ENV CGO_ENABLED 0
 ENV PORT $PORT
+ENV DATABASE $DATABASE
 RUN apk add --no-cache git
 RUN mkdir -p /go/src/github.com/TibebeJs
 ADD . /go/src/github.com/TibebeJs/yenepay.sample-shop.go
