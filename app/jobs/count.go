@@ -15,7 +15,7 @@ type OrderCounter struct{}
 
 func (c OrderCounter) Run() {
 	orders, err := gorp.Db.Map.Select(models.Order{},
-		`select * from 'Order'`)
+		`select * from "Order"`)
 	if err != nil {
 		panic(err)
 	}

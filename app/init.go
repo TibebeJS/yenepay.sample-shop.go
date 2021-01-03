@@ -54,7 +54,7 @@ func init() {
 		setColumnSizes(t, map[string]int{
 			"Title":      50,
 			"Price":      100,
-			"CoverImage": 40,
+			"CoverImage": 60,
 		})
 
 		t = Dbm.AddTable(models.Order{}).SetKeys(true, "OrderId")
@@ -83,7 +83,7 @@ func init() {
 		if err := Dbm.Insert(demoUser); err != nil {
 			panic(err)
 		}
-		count, _ := rgorp.Db.SelectInt(rgorp.Db.SqlStatementBuilder.Select("count(*)").From("User"))
+		count, _ := rgorp.Db.SelectInt(rgorp.Db.SqlStatementBuilder.Select("count(*)").From("\"User\""))
 		if count > 1 {
 			revel.AppLog.Panic("Unexpected multiple users", "count", count)
 		}
@@ -113,7 +113,7 @@ func init() {
 				panic(err)
 			}
 		}
-		bookings := []*models.Order{
+		orders := []*models.Order{
 			{
 				OrderId:        0,
 				UserId:         demoUser.UserId,
@@ -142,8 +142,8 @@ func init() {
 				Book:           books[2],
 			},
 		}
-		for _, booking := range bookings {
-			if err := Dbm.Insert(booking); err != nil {
+		for _, order := range orders {
+			if err := Dbm.Insert(order); err != nil {
 				panic(err)
 			}
 		}

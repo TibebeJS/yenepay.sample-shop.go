@@ -24,7 +24,7 @@ func (user *User) Validate(v *revel.Validation) {
 	v.Check(user.Username,
 		revel.Required{},
 		revel.MaxSize{
-			Max: 15,
+			Max: 50,
 		},
 		revel.MinSize{
 			Min: 4,
@@ -49,7 +49,7 @@ func ValidatePassword(v *revel.Validation, password string) *revel.ValidationRes
 	return v.Check(password,
 		revel.Required{},
 		revel.MaxSize{
-			Max: 15,
+			Max: 50,
 		},
 		revel.MinSize{
 			Min: 5,
