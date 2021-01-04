@@ -48,16 +48,31 @@ func (c Application) getUser(username string) (user *models.User) {
 	}
 
 	err = c.Txn.SelectOne(user, c.Db.SqlStatementBuilder.Select("*").From("\"User\"").Where("\"Username\"=?", username))
+
 	if err != nil {
 		if err != sql.ErrNoRows {
 			//c.Txn.Select(user, c.Db.SqlStatementBuilder.Select("*").From("User").Limit(1))
 			count, _ := c.Txn.SelectInt(c.Db.SqlStatementBuilder.Select("count(*)").From("User"))
-			c.Log.Error("Failed to find user", "user", username, "error", err, "count", count)
+			c.Log.Error("Failed to find user", "user", username, "error", err, "count", count)			
 		}
 		return nil
 	}
-	c.Session["fulluser"] = user
-	return
+
+	c.Log.Info("Fetching books")
+	var cartItems []*models.Book
+	_, err = c.Txn.Select(&cartItems,
+		c.Db.SqlStatementBuilder.Select("*").From("\"CartItem\"").Where("\"UserId\"=?", user.UserId),
+	)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("CARTITEM: ", cartItems)
+	
+	c.Session.Set("fulluser", user)
+	c.Session.Set("cartcount", len(cartItems))
+	return user
 }
 
 func (c Application) Index() revel.Result {

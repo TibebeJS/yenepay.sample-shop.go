@@ -50,6 +50,10 @@ func init() {
 			"Name":     100,
 		})
 
+		t = Dbm.AddTable(models.CartItem{}).SetKeys(false, "UserId", "BookId")
+		t.ColMap("User").Transient = true
+		t.ColMap("Book").Transient = true
+
 		t = Dbm.AddTable(models.Book{}).SetKeys(true, "BookId")
 		setColumnSizes(t, map[string]int{
 			"Title":      50,
@@ -153,7 +157,19 @@ func init() {
 				panic(err)
 			}
 		}
+
+		cartItem := &models.CartItem{
+			UserId: demoUser.UserId,
+			BookId: 0,
+			Book:   books[0],
+			User:   demoUser,
+		}
+
+		if err := Dbm.Insert(cartItem); err != nil {
+			panic(err)
+		}
 	}, 5)
+
 }
 
 var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {

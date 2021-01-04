@@ -7,43 +7,44 @@ import (
 	"github.com/revel/revel"
 )
 
-type Cart struct {
-	BookIds []int
+type CartItem struct {
+	BookId int
+	UserId int
 
-	Books []Book
+	Book *Book
+	User *User
 }
 
-func (order Cart) Validate(v *revel.Validation) {
+func (order CartItem) Validate(v *revel.Validation) {
 }
 
-func (o Cart) String() string {
-	return fmt.Sprintf("Cart(%v)", o.Books)
+func (o CartItem) String() string {
+	return fmt.Sprintf("CartItem(%v)", o.Book)
 }
 
-func (o *Cart) PreInsert(_ gorp.SqlExecutor) error {
-	for i, book := range o.Books {
-		o.BookIds[i] = book.BookId
-	}
+func (o *CartItem) PreInsert(_ gorp.SqlExecutor) error {
+	o.BookId = o.Book.BookId
+	o.UserId = o.User.UserId
 	return nil
 }
 
-func (o *Cart) PostGet(exe gorp.SqlExecutor) error {
-	// var (
-	// 	obj interface{}
-	// 	err error
-	// )
+func (o *CartItem) PostGet(exe gorp.SqlExecutor) error {
+	var (
+		obj interface{}
+		err error
+	)
 
-	// obj, err = exe.Get(User{}, o.UserId)
-	// if err != nil {
-	// 	return fmt.Errorf("Error loading a order's user (%d): %s", o.UserId, err)
-	// }
-	// o.User = obj.(*User)
+	obj, err = exe.Get(User{}, o.UserId)
+	if err != nil {
+		return fmt.Errorf("Error loading a order's user (%d): %s", o.UserId, err)
+	}
+	o.User = obj.(*User)
 
-	// obj, err = exe.Get(Book{}, o.BookId)
-	// if err != nil {
-	// 	return fmt.Errorf("Error loading a order's hotel (%d): %s", o.BookId, err)
-	// }
-	// o.Book = obj.(*Book)
+	obj, err = exe.Get(Book{}, o.BookId)
+	if err != nil {
+		return fmt.Errorf("Error loading a order's hotel (%d): %s", o.BookId, err)
+	}
+	o.Book = obj.(*Book)
 
 	return nil
 }
