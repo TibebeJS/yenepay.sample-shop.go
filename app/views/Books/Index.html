@@ -17,8 +17,8 @@
 
             </div>
             <div>
-              <a class="uk-button uk-button-text uk-padding-small uk-position-bottom-left" uk-toggle="target: #express-checkout">Buy this Book</a>
-              <a href="AddToCart/{{ .BookId }}" class="uk-button uk-button-text uk-padding-small uk-position-bottom-right">Add to Cart</a>
+              <a class="uk-button uk-button-text uk-padding-small uk-position-bottom-left" uk-toggle="target: #express-checkout" onclick="document.getElementById('express_bookid').value = {{ .BookId }}">Buy this Book</a>
+              <a class="uk-button uk-button-text uk-padding-small uk-position-bottom-right" uk-toggle="target: #add-to-cart" onclick="document.getElementById('cartitem_bookid').value = {{ .BookId }}">Add to Cart</a>
             </div>
           </div>
     </div>

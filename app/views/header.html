@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="/public/css/uikit.min.css" />
     <script src="/public/js/uikit.min.js"></script>
     <script src="/public/js/uikit-icons.min.js"></script>
+    <script>
+      const cartitem = {
+        book_id: null,
+        quantity: null
+      }
+    </script>
   </head>
 
   <body>
@@ -32,7 +38,7 @@
           </a>
 
           <button class="uk-button uk-button-default" type="button" uk-toggle="target: #cart-checkout">
-            <span class="uk-badge">3</span>
+            <span class="uk-badge">{{ .session.cartcount }}</span>
             <a href="#" uk-icon="icon: cart"></a>
             My Cart
           </button>
@@ -69,22 +75,17 @@
         
                 <p>
                   <b>Items:</b>
-                  <div class="uk-grid-small" uk-grid>
-                    <div class="uk-width-expand" uk-leader>Automate The Boring Stuff</div>
-                    <div>20.90 Birr</div>
-                    <a href="#" uk-icon="icon: close"></a>
-                  </div>
-                  <div class="uk-grid-small" uk-grid>
-                    <div class="uk-width-expand" uk-leader>Go Bootcamp: 2nd Edition</div>
-                    <div>12.90 Birr</div>
-                    <a href="#" uk-icon="icon: close"></a>
-                  </div>
-                  <div class="uk-grid-small" uk-grid>
-                    <div class="uk-width-expand" uk-leader>Get Programming With Go</div>
-                    <div>20.90 Birr</div>
-                    <a href="#" uk-icon="icon: close"></a>
-                  </div>
-        
+                  {{ if .session.cartitems }}
+                    {{ range $cartitem := .session.cartitems }}
+                      <div class="uk-grid-small" uk-grid>
+                        <div class="uk-width-expand" uk-leader>{{ .Book.Title }}</div>
+                        <div>{{ .Price }} Birr ( {{ .Quantity }} x {{.Book.Price}} Br.)</div>
+                        <a href="{{ url "Cart.RemoveItem" }}?book_id={{ .Book.BookId }}" uk-icon="icon: close"></a>
+                      </div>
+                    {{ end }}
+                  {{ else }}
+                    <div class="uk-grid-small" style="padding-left:  20px;" uk-grid>No item found</div>                     
+                  {{ end }}
                   <hr>
         
                   <div class="uk-grid-small" uk-grid>
@@ -111,25 +112,53 @@
         
         <div id="express-checkout" uk-offcanvas="flip: true; overlay: true">
             <div class="uk-offcanvas-bar">
+              <form action="{{ url "Cart.ExpressCheckout" }}" method="POST">
         
                 <button class="uk-offcanvas-close" type="button" uk-close></button>
         
                 <h3>Buy this item</h3>
-        
+                
+                <input type="hidden" id="express_bookid" name="book_id" value="1"/>
+
                 <p>
                   Quantity:
                   <div class="uk-margin">
-                    <input class="uk-input" type="number" placeholder="Amount">
+                    <input class="uk-input" type="number" placeholder="Amount" name="quantity">
                   </div>
         
                 </p>
         
-                <button class="uk-button uk-button-primary uk-width-expand" type="button"
-                  onclick="location='#'">
-                  <a href="#" uk-icon="icon: credit-card"></a>
+                <button class="uk-button uk-button-primary uk-width-expand" type="submit">
+                  <a uk-icon="icon: credit-card"></a>
                   Pay with YenePay
                 </button>
+
+              </form>
+            </div>
+        </div>
+
+        <div id="add-to-cart" uk-offcanvas="flip: true; overlay: true">
+            <div class="uk-offcanvas-bar">
+              <form action="{{ url "Cart.AddItem" }}" method="POST">
         
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+        
+                <h3>Add Book to My Cart</h3>
+                
+                <input type="hidden" id="cartitem_bookid" name="book_id" value="1"/>
+
+                <p>
+                  Quantity:
+                  <div class="uk-margin">
+                    <input class="uk-input" type="number" placeholder="Amount" name="quantity">
+                  </div>
+        
+                </p>
+        
+                <button class="uk-button uk-button-primary uk-width-expand" type="submit">
+                  Add To Cart
+                </button>
+              </form>
             </div>
         </div>
         

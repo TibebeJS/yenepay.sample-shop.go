@@ -15,6 +15,9 @@ GET      /register                               Application.Register
 POST     /register                               Application.SaveUser
 POST     /login                                  Application.Login
 GET      /logout                                 Application.Logout
+GET      /cart/remove-item                       Cart.RemoveItem
+POST     /cart/add-item                          Cart.AddItem
+POST     /cart/express-checkout                  Cart.ExpressCheckout
 
 #GET     /books/list                             Books.List
 #GET     /books/:id                              Books.Show

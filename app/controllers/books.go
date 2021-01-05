@@ -18,10 +18,12 @@ type Books struct {
 }
 
 func (c Books) checkUser() revel.Result {
-	if user := c.connected(); user == nil {
+	user := c.connected()
+	if user == nil {
 		c.Flash.Error("Please log in first")
 		return c.Redirect(Application.Index)
 	}
+
 	return nil
 }
 
