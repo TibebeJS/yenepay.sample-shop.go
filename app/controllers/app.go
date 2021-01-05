@@ -24,6 +24,10 @@ func (c Application) AddUser() revel.Result {
 	return nil
 }
 
+func formatCurrency(input float64) float64 {
+	return float64(int(input * 100)) / 100
+}
+
 func (c Application) connected() *models.User {
 	if c.ViewArgs["user"] != nil {
 		return c.ViewArgs["user"].(*models.User)
@@ -37,6 +41,24 @@ func (c Application) connected() *models.User {
 			c.Log.Fatal("Unexpected error loading cart items", "error", err)
 		}
 
+		var totalCost float64
+
+		for _, item := range cartItems {
+			totalCost += item.Book.Price * float64(item.Quantity)
+		}
+
+		tax := formatCurrency(0.15 * totalCost)
+
+		totalCost += tax
+
+		totalCost = formatCurrency(totalCost)
+
+		if err := c.Session.Set("tax", tax); err != nil {
+			c.Log.Error("error setting cart information to session")
+		}
+		if err := c.Session.Set("total", totalCost); err != nil {
+			c.Log.Error("error setting cart information to session")
+		}
 		if err := c.Session.Set("cartcount", len(cartItems)); err != nil {
 			c.Log.Error("error setting cart information to session")
 		}
