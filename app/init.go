@@ -118,6 +118,48 @@ func init() {
 				Title:      "Get Programming With Go",
 				CoverImage: "get-programming-with-go.jpg",
 			},
+			{
+				BookId:     0,
+				Price:      11.9,
+				Title:      "Data Science from Scratch",
+				CoverImage: "Data Science from Scratch.jpg",
+			},
+			{
+				BookId:     0,
+				Price:      11.9,
+				Title:      "Data Structures and Algorithms",
+				CoverImage: "Data Structures and Algorithms.jpg",
+			},
+			{
+				BookId:     0,
+				Price:      43.49,
+				Title:      "Fundamentals of Software Architecture",
+				CoverImage: "Fundamentals of Software Architecture.jpg",
+			},
+			{
+				BookId:     0,
+				Price:      41.28,
+				Title:      "Building Secure and Reliable Systems",
+				CoverImage: "Building Secure and Reliable Systems.jpg",
+			},
+			{
+				BookId:     0,
+				Price:      54.99,
+				Title:      "Site Reliability Engineering",
+				CoverImage: "Site Reliability Engineering.jpg",
+			},
+			{
+				BookId:     0,
+				Price:      54.99,
+				Title:      "The DevOps Handbook",
+				CoverImage: "The DevOps Handbook.jpg",
+			},
+			{
+				BookId:     0,
+				Price:      11.9,
+				Title:      "Data Structures and Algorithms: 2nd Edition",
+				CoverImage: "Data Structures and Algorithms.jpg",
+			},
 		}
 		for _, book := range books {
 			if err := Dbm.Insert(book); err != nil {
