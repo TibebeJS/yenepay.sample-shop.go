@@ -73,7 +73,10 @@ func (c Application) getUser(username string) (user *models.User) {
 		return nil
 	}
 	
-	c.Session.Set("fulluser", user)
+	if err := c.Session.Set("fulluser", user); err != nil {
+		c.Log.Error("error setting cart information to session")
+	}
+	
 	return user
 }
 
