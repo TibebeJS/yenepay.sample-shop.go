@@ -24,7 +24,7 @@ func (c OrderCounter) Run() {
 
 func init() {
 	revel.OnAppStart(func() {
-		err := jobs.Schedule("@every 6s", OrderCounter{})
+		err := jobs.Schedule("@every 30s", OrderCounter{})
 		if err != nil {
 			fmt.Print(err)
 		}

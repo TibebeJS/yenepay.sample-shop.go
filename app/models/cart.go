@@ -10,6 +10,9 @@ import (
 type CartItem struct {
 	BookId int
 	UserId int
+	Quantity int
+
+	Price float64
 
 	Book *Book
 	User *User
@@ -19,7 +22,7 @@ func (order CartItem) Validate(v *revel.Validation) {
 }
 
 func (o CartItem) String() string {
-	return fmt.Sprintf("CartItem(%v)", o.Book)
+	return fmt.Sprintf("CartItem(%s, %s)", o.User.Name, o.Book.Title)
 }
 
 func (o *CartItem) PreInsert(_ gorp.SqlExecutor) error {
@@ -45,6 +48,8 @@ func (o *CartItem) PostGet(exe gorp.SqlExecutor) error {
 		return fmt.Errorf("Error loading a order's hotel (%d): %s", o.BookId, err)
 	}
 	o.Book = obj.(*Book)
+
+	o.Price = o.Book.Price * float64(o.Quantity)
 
 	return nil
 }

@@ -18,10 +18,21 @@ type Books struct {
 }
 
 func (c Books) checkUser() revel.Result {
-	if user := c.connected(); user == nil {
+	user := c.connected()
+	if user == nil {
 		c.Flash.Error("Please log in first")
 		return c.Redirect(Application.Index)
 	}
+
+	var cartItems []*models.CartItem
+	builder := c.Db.SqlStatementBuilder.Select("*").From("\"CartItem\"").Where("\"UserId\"=?", user.UserId)
+	if _, err := c.Txn.Select(&cartItems, builder); err != nil {
+		c.Log.Fatal("Unexpected error loading cart items", "error", err)
+	}
+
+	c.Session.Set("cartcount", len(cartItems))
+	c.Session.Set("cartitems", cartItems)
+
 	return nil
 }
 

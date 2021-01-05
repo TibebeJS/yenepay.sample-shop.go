@@ -69,21 +69,13 @@
         
                 <p>
                   <b>Items:</b>
+                  {{ range $cartitem := .session.cartitems }}
                   <div class="uk-grid-small" uk-grid>
-                    <div class="uk-width-expand" uk-leader>Automate The Boring Stuff</div>
-                    <div>20.90 Birr</div>
+                    <div class="uk-width-expand" uk-leader>{{ .Book.Title }}</div>
+                    <div>{{ .Price }} Birr ( {{ .Quantity }} x {{.Book.Price}} Br.)</div>
                     <a href="#" uk-icon="icon: close"></a>
                   </div>
-                  <div class="uk-grid-small" uk-grid>
-                    <div class="uk-width-expand" uk-leader>Go Bootcamp: 2nd Edition</div>
-                    <div>12.90 Birr</div>
-                    <a href="#" uk-icon="icon: close"></a>
-                  </div>
-                  <div class="uk-grid-small" uk-grid>
-                    <div class="uk-width-expand" uk-leader>Get Programming With Go</div>
-                    <div>20.90 Birr</div>
-                    <a href="#" uk-icon="icon: close"></a>
-                  </div>
+                  {{ end }}
         
                   <hr>
         

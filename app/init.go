@@ -53,6 +53,7 @@ func init() {
 		t = Dbm.AddTable(models.CartItem{}).SetKeys(false, "UserId", "BookId")
 		t.ColMap("User").Transient = true
 		t.ColMap("Book").Transient = true
+		t.ColMap("Price").Transient = true
 
 		t = Dbm.AddTable(models.Book{}).SetKeys(true, "BookId")
 		setColumnSizes(t, map[string]int{
@@ -158,14 +159,15 @@ func init() {
 			}
 		}
 
-		cartItem := &models.CartItem{
+		cartItem := models.CartItem{
 			UserId: demoUser.UserId,
 			BookId: 0,
 			Book:   books[0],
 			User:   demoUser,
+			Quantity: 2,
 		}
 
-		if err := Dbm.Insert(cartItem); err != nil {
+		if err := Dbm.Insert(&cartItem); err != nil {
 			panic(err)
 		}
 	}, 5)

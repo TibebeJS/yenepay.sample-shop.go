@@ -57,21 +57,8 @@ func (c Application) getUser(username string) (user *models.User) {
 		}
 		return nil
 	}
-
-	c.Log.Info("Fetching books")
-	var cartItems []*models.Book
-	_, err = c.Txn.Select(&cartItems,
-		c.Db.SqlStatementBuilder.Select("*").From("\"CartItem\"").Where("\"UserId\"=?", user.UserId),
-	)
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println("CARTITEM: ", cartItems)
 	
 	c.Session.Set("fulluser", user)
-	c.Session.Set("cartcount", len(cartItems))
 	return user
 }
 
