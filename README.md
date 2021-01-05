@@ -5,6 +5,8 @@
 ![Go Report Card](https://goreportcard.com/badge/github.com/tibebejs/yenepay.sample-shop.go)
 ![Heroku](https://heroku-badge.herokuapp.com/?app=yenepay-go-bookshop)
 
+![Heroku](https://heroku-badge.herokuapp.com/?app=yenepay-go-bookshop)
+
 An online book shop app to demonstrate [Yenepay-Go](https://github.com/TibebeJS/yenepay.sdk.go):
 - Built with Go ([revel framework](https://github.com/revel/revel))
 - Using a PostgreSQL database with [GORP](https://github.com/go-gorp/gorp) (ORM-ish library)
