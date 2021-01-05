@@ -37,8 +37,12 @@ func (c Application) connected() *models.User {
 			c.Log.Fatal("Unexpected error loading cart items", "error", err)
 		}
 
-		c.Session.Set("cartcount", len(cartItems))
-		c.Session.Set("cartitems", cartItems)
+		if err := c.Session.Set("cartcount", len(cartItems)); err != nil {
+			c.Log.Error("error setting cart information to session")
+		}
+		if err := c.Session.Set("cartitems", cartItems); err != nil {
+			c.Log.Error("error setting cart information to session")
+		}
 
 		return user
 	}
