@@ -1,9 +1,10 @@
 # yenepay.sample-shop.go
 ![tests](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/tests/badge.svg)
-[![codecov](https://codecov.io/gh/TibebeJS/yenepay.sample-shop.go/branch/main/graph/badge.svg?token=PQTt3MS57J)](https://codecov.io/gh/TibebeJS/yenepay.sample-shop.go)
 ![linter](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/linter/badge.svg)
 ![Deploy](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/Deploy/badge.svg)
 ![Go Report Card](https://goreportcard.com/badge/github.com/tibebejs/yenepay.sample-shop.go)
+
+![Heroku](https://heroku-badge.herokuapp.com/?app=yenepay-go-bookshop)
 
 An online book shop app to demonstrate [Yenepay-Go](https://github.com/TibebeJS/yenepay.sdk.go):
 - Built with Go ([revel framework](https://github.com/revel/revel))
