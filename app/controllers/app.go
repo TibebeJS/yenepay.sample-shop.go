@@ -29,7 +29,18 @@ func (c Application) connected() *models.User {
 		return c.ViewArgs["user"].(*models.User)
 	}
 	if username, ok := c.Session["user"]; ok {
-		return c.getUser(username.(string))
+		user := c.getUser(username.(string))
+		
+		var cartItems []*models.CartItem
+		builder := c.Db.SqlStatementBuilder.Select("*").From("\"CartItem\"").Where("\"UserId\"=?", user.UserId)
+		if _, err := c.Txn.Select(&cartItems, builder); err != nil {
+			c.Log.Fatal("Unexpected error loading cart items", "error", err)
+		}
+
+		c.Session.Set("cartcount", len(cartItems))
+		c.Session.Set("cartitems", cartItems)
+
+		return user
 	}
 	return nil
 }
