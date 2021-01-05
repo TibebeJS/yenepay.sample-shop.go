@@ -3,7 +3,6 @@
 ![linter](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/linter/badge.svg)
 ![Deploy](https://github.com/TibebeJS/yenepay.sample-shop.go/workflows/Deploy/badge.svg)
 ![Go Report Card](https://goreportcard.com/badge/github.com/tibebejs/yenepay.sample-shop.go)
-
 ![Heroku](https://heroku-badge.herokuapp.com/?app=yenepay-go-bookshop)
 
 An online book shop app to demonstrate [Yenepay-Go](https://github.com/TibebeJS/yenepay.sdk.go):
