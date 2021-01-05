@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="/public/css/uikit.min.css" />
     <script src="/public/js/uikit.min.js"></script>
     <script src="/public/js/uikit-icons.min.js"></script>
+    <script>
+      const cartitem = {
+        book_id: null,
+        quantity: null
+      }
+    </script>
   </head>
 
   <body>
@@ -130,24 +136,26 @@
 
         <div id="add-to-cart" uk-offcanvas="flip: true; overlay: true">
             <div class="uk-offcanvas-bar">
+              <form action="{{ url "Cart.AddItem" }}" method="POST">
         
                 <button class="uk-offcanvas-close" type="button" uk-close></button>
         
                 <h3>Add Book to My Cart</h3>
-        
+                
+                <input type="hidden" id="cartitem_bookid" name="book_id" value="1"/>
+
                 <p>
                   Quantity:
                   <div class="uk-margin">
-                    <input class="uk-input" type="number" placeholder="Amount">
+                    <input class="uk-input" type="number" placeholder="Amount" name="quantity">
                   </div>
         
                 </p>
         
-                <button class="uk-button uk-button-primary uk-width-expand" type="button"
-                  onclick="location='#'">
+                <button class="uk-button uk-button-primary uk-width-expand" type="submit">
                   Add To Cart
                 </button>
-        
+              </form>
             </div>
         </div>
         

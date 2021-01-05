@@ -32,3 +32,37 @@ func (c Cart) RemoveItem() revel.Result {
 
 	return c.Redirect(Application.Index)
 }
+
+func (c Cart) AddItem() revel.Result {
+	var (
+		err      error
+		bookId   int
+		quantity int
+	)
+
+	bookId, err = strconv.Atoi(c.Params.Form.Get("book_id"))
+	if err != nil {
+		return c.Redirect(Application.Index)
+	}
+
+	quantity, err = strconv.Atoi(c.Params.Form.Get("quantity"))
+
+	if err != nil {
+		return c.Redirect(Application.Index)
+	}
+
+	user := c.connected()
+	if user == nil {
+		c.Flash.Error("Please log in first")
+		return c.Redirect(Application.Index)
+	}
+
+	err = c.Db.Map.Insert(&models.CartItem{Quantity: quantity, User: &models.User{UserId: user.UserId}, Book: &models.Book{BookId: bookId}})
+
+	if err != nil {
+		c.Flash.Error("Couldn't insert a cart item")
+		c.Log.Fatal("Unexpected error inserting a cart item", "error", err)
+	}
+
+	return c.Redirect(Application.Index)
+}

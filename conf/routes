@@ -16,6 +16,7 @@ POST     /register                               Application.SaveUser
 POST     /login                                  Application.Login
 GET      /logout                                 Application.Logout
 GET      /cart/remove-item                       Cart.RemoveItem
+POST     /cart/add-item                          Cart.AddItem
 
 #GET     /books/list                             Books.List
 #GET     /books/:id                              Books.Show
