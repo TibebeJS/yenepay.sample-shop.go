@@ -50,6 +50,10 @@ func (c Cart) AddItem() revel.Result {
 	quantity, err = strconv.Atoi(c.Params.Form.Get("quantity"))
 
 	if err != nil {
+		c.Flash.Error(fmt.Sprintf("Error with quantity: %s", err))
+		return c.Redirect(Application.Index)
+	} else if quantity < 1 {
+		c.Flash.Error("Error with quantity: must be atleast 1")
 		return c.Redirect(Application.Index)
 	}
 
@@ -86,6 +90,10 @@ func (c Cart) ExpressCheckout() revel.Result {
 	quantity, err = strconv.Atoi(c.Params.Form.Get("quantity"))
 
 	if err != nil {
+		c.Flash.Error(fmt.Sprintf("Error with quantity: %s", err))
+		return c.Redirect(Application.Index)
+	} else if quantity < 1 {
+		c.Flash.Error("Error with quantity: must be atleast 1")
 		return c.Redirect(Application.Index)
 	}
 
